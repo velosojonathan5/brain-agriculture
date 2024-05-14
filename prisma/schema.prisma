@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum StateEnum {
+  AC
+  AL
+  AP
+  AM
+  BA
+  CE
+  DF
+  ES
+  GO
+  MA
+  MT
+  MS
+  MG
+  PA
+  PB
+  PR
+  PE
+  PI
+  RJ
+  RN
+  RS
+  RO
+  RR
+  SC
+  SP
+  SE
+  TO
+}
+
+enum PlantedCrop {
+  SOY
+  CORN
+  COTTON
+  COFFEE
+  SUGAR_CANE
+}
+
+model Farm {
+  id                String         @id @db.Uuid
+  name              String         @map("name") @db.VarChar(50)
+  city              String         @map("city") @db.VarChar(50)
+  state             StateEnum      @map("state")
+  farmTotalArea     Int            @map("farm_total_area")
+  arableArea        Int            @map("arable_area")  
+  vegetationArea    Int            @map("vegetation_area") 
+  plantedCrops      PlantedCrop[]  @map("planted_crops")
+  ruralProducer     RuralProducer?
+}
+
+model RuralProducer {
+  id          String        @id @db.Uuid
+  CPForCNPJ   String        @map("cpf_or_cnpj") @db.VarChar(14)
+  name        String        @map("name") @db.VarChar(50)
+  farm        Farm?         @relation(fields: [farmId], references: [id])
+  farmId      String        @db.Uuid @unique
+}
