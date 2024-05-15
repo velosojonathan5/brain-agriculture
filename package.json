@@ -7,7 +7,10 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "test": "jest",
-    "test:dev": "jest --watchAll"
+    "test:dev": "jest --watchAll",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "npm run prisma:generate && npx prisma migrate dev",
+    "prisma:migrate:deploy": "npm run prisma:generate && npx prisma migrate deploy"
   },
   "keywords": [],
   "author": "Jonathan Veloso",
@@ -29,5 +32,8 @@
     "express": "^4.19.2",
     "validations-br": "^1.4.0",
     "zod": "^3.23.8"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   }
 }
