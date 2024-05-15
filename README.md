@@ -12,9 +12,9 @@ Instale as dependências com o comando `npm i`.
 
 Copie o arquivo `.env.example` para um arquivo de nome `.env`.
 
-Execute o comando `npm run prisma:migrate`.
+Certifique de ter um Postges em execução e ajustar as credenciais do banco na variável de ambiente `DATABASE_URL` no arquivo `.env`.
 
-Execute `npm run prisma:seed` para popular o banco de dados com os dados mockados.
+Execute o comando `npm run prisma:migrate` para criação do schema de de banco de dados e execução da seed de dados mockados.
 
 Execute a aplicação com o comando `npm run dev`.
 

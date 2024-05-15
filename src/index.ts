@@ -3,8 +3,13 @@ import ruralProducerRouter from './domains/rural-producer/RuralProducer.router';
 import { BusinessException } from './exceptions/BusinessException';
 import swaggerUi from 'swagger-ui-express';
 import fs from 'fs';
+import dotenv from "dotenv";
 
-const PORT = 3000;
+dotenv.config({
+  path: ".env",
+});
+
+const PORT = Number(process.env.PORT || 3000);
 const app = express();
 const route = Router();
 
@@ -34,5 +39,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     }
 });
 
-app.listen(3000, () => console.log(`Server running on port ${PORT}`))
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 
