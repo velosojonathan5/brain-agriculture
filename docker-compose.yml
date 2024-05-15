@@ -1,0 +1,36 @@
+version: "3.4"
+
+services:
+  postgres:
+    image: "bitnami/postgresql"
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=db
+    networks:
+      - app-net
+
+  brain_agriculture:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: brain_agriculture
+    container_name: brain_agriculture
+    restart: always
+    environment:
+      - PORT=3000
+      - DATABASE_URL=postgresql://docker:docker@postgres:5432/brain_agriculture
+    ports:
+      - 3000:3000
+    networks:
+      - app-net
+    depends_on:
+      - postgres
+
+networks:
+  app-net:
+    driver: bridge
