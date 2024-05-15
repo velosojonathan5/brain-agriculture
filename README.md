@@ -6,7 +6,7 @@ Este repositório contém o código para o teste de desenvolvimento da Tinnova p
 
 Na raiz do projeto, execute o comando `docker-compose up -d` para que seja criada a aplicação e o Postgres. Este comando já cria o schema de banco de dados.
 
-Execute o comando `npm run prisma:seed` para popular o banco de dados com os dados mockados.
+Instale as dependências com `npm i` e execute `npm run prisma:seed` para popular o banco de dados com os dados mockados.
 
 ## Executar localmente em modo dev
 
