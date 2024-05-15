@@ -1,0 +1,307 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Teste de Desenvolvimento Tinnova - Brain Agriculture",
+    "version": "1.0"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/rural-producer": {
+      "post": {
+        "summary": "POST /rural-producer",
+        "parameters": [
+          {
+            "name": "create",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateRuralProducer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rural-producer/{id}": {
+      "get": {
+        "summary": "GET /rural-producer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RuralProducer"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "PUT /rural-producer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          },
+          {
+            "name": "create",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateRuralProducer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE /rural-producer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/rural-producer/sums": {
+      "get": {
+        "summary": "GET /rural-producer/sums",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RuralProducerSums"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateRuralProducer": {
+      "type": "object",
+      "properties": {
+        "CPForCNPJ": {
+          "type": "string",
+          "format": "string",
+          "example": "91525046000180"
+        },
+        "name": {
+          "type": "string",
+          "format": "string",
+          "example": "Fazendeiro"
+        },
+        "farmName": {
+          "type": "string",
+          "format": "string",
+          "example": "Fazenda"
+        },
+        "city": {
+          "type": "string",
+          "format": "string"
+        },
+        "state": {
+          "type": "string",
+          "format": "string",
+          "example": "MG"
+        },
+        "farmTotalArea": {
+          "type": "number",
+          "format": "number",
+          "example": 100
+        },
+        "arableArea": {
+          "type": "number",
+          "format": "number",
+          "example": 50
+        },
+        "vegetationArea": {
+          "type": "number",
+          "format": "number",
+          "example": 50
+        },
+        "plantedCrops": {
+          "type": "array",
+          "items":{
+            "$ref": "#/definitions/PlantedCrops"
+          }
+        }
+      }
+    },
+    "RuralProducer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "string"
+        },
+        "CPForCNPJ": {
+          "type": "string",
+          "format": "string"
+        },
+        "name": {
+          "type": "string",
+          "format": "string"
+        },
+        "farm": {
+          "$ref": "#/definitions/Farm"
+        }
+      }
+    },
+    "Farm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "string"
+        },
+        "name": {
+          "type": "string",
+          "format": "string"
+        },
+        "city": {
+          "type": "string",
+          "format": "string"
+        },
+        "state": {
+          "type": "string",
+          "format": "string"
+        },
+        "farmTotalArea": {
+          "type": "number",
+          "format": "number"
+        },
+        "arableArea": {
+          "type": "number",
+          "format": "number"
+        },
+        "vegetationArea": {
+          "type": "number",
+          "format": "number"
+        },
+        "plantedCrops": {
+          "type": "array",
+          "items":{
+            "$ref": "#/definitions/PlantedCrops"
+          }
+        }
+      }
+    },
+    "PlantedCrops": {
+      "enum": ["SOY","CORN","COTTON","COFFEE","SUGAR_CANE"]
+    },
+    "RuralProducerSums": {
+      "type": "object",
+      "properties": {
+        "amountFarms": {
+          "type": "number",
+          "format": "number"
+        },
+        "amountHectare": {
+          "type": "number",
+          "format": "number"
+        },
+        "amountByState": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "state": {
+                "type": "string",
+                "format": "string"
+              },
+              "amountFarms": {
+                "type": "number",
+                "format": "number"
+              },
+              "amountHectare": {
+                "type": "number",
+                "format": "number"
+              }
+            }
+          }
+        },
+        "amountByCrop": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "crop": {
+                "$ref": "#/definitions/PlantedCrops"
+              },
+              "amountFarms": {
+                "type": "number",
+                "format": "number"
+              },
+              "amountHectare": {
+                "type": "number",
+                "format": "number"
+              }
+            }
+          }
+        },
+        "soloUseArea": {
+          "type": "object",
+          "properties": {
+            "arable": {
+              "type": "number",
+              "format": "number"
+            },
+            "vegetation": {
+              "type": "number",
+              "format": "number"
+            }
+          }
+        }
+      }
+    }
+  }
+}

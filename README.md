@@ -18,6 +18,11 @@ Execute o comando `npm run prisma:migrate`.
 
 Execute a aplicação com o comando `npm run dev`.
 
+## API Contracts
+
+Acesse [a doc Swagger](http://localhost:3000/api-docs)  para visualizar a documentação de API.
+Link [http://localhost:3000/api-docs](http://localhost:3000/api-docs).
+
 ## Testes
 
 Execute o comando `npm run test` para executar os testes unitários.
@@ -28,7 +33,7 @@ Para o desafio, foram apresentados os seguites requisitos de negócio:
 
 - [x] O usuário deverá ter a possibilidade de cadastrar, editar, e excluir produtores rurais.
 - [x] O sistema deverá validar CPF e CNPJ digitados incorretamente.
-- [x] A soma de área agrícultável e vegetação, não deverá ser maior que a área total da fazenda
+- [x] A soma de área agrícultável e vegetação, não deverá ser maior que a área total da fazenda.
 - [x] Cada produtor pode plantar mais de uma cultura em sua Fazenda.
 - [x] A aplicação deve retornar somatórios para aliementar um Dashboard.
 
@@ -41,7 +46,7 @@ Foram utilizados os seguintes recursos e princípios conforme os requisitos téc
 - [x] Postgres
 - [x] TypeScript
 - [x] Tests
-- [ ] API Contracts
+- [x] API Contracts
 - [x] SOLID
 - [x] KISS
 - [x] Clean Code
